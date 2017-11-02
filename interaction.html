@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Interaction Project</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+        
+    <script>
+        // Below are all the variables that I will be using in this project
+        var ghost //This variable is for the "ghost" image
+        
+        var pumpkin //This variable is for the "pumpkin" image
+        
+        var gOpacity //This variable is for making the "ghost" fading away
+        
+        var pOpacity //This variable is for making the "pumpkin" fading away
+        
+        var pScale //This variable is for the scale of the "pumpkin"
+        
+        var gScale //This variable is for the scale of the "ghost"
+        
+        var r,b,g //This variable is for the colors of the background
+        
+        function preload(){
+            //This function allow the codes below to run before the codes belowfunction setup()
+            ghost = loadImage('Images/Ghost_Emoji_2.1.png'); 
+            //This code is for loading the "ghost" image
+            pumpkin = loadImage('Images/Wall_Pumpkin (1).1.png');
+            //This code is for loading the "pumpkin" image
+        }
+        
+        function setup() {
+            createCanvas(600,600); //The canvas size
+            
+            gOpacity = 256; //How visible the "ghost" image is 
+            //(255 is max visibility and 0 is invisible to the naked eye)
+            
+            pOpacity = 256; //How visible the "pumpkin" image is
+            //(255 is max visibility and 0 is invisible to the naked eye)
+            
+            pScale = 1; //The scale of the "pumpkin"
+            
+            gScale = 1; //The scale of the "ghost"
+            
+            r = random(0,255); //How much red is in the color
+            
+            b = random(0,255); //How much blue is in the color
+            
+            g = random(0,255); //How much green is in the color
+            
+            background(r,b,g); //The color of the background
+            
+        }
+        
+        function draw() {   
+            
+            fill("red"); //Makes the text red color
+            textSize(35); //The size of the text
+            textStyle("bold"); //The style of the text
+            text("HAPPY HALLOWEEN OF 2017!",width/14,height/3);
+            //What the text is and the coordinate where is the text is being displayed
+            
+                  
+            
+        }
+        
+        function keyPressed() {
+            //This code allows codes below to run when a key is pressed
+            
+            imageMode(CENTER); //The mode of the "pumpkin" image
+            
+            image(pumpkin,random(0,600),random(0,600),pumpkin.width/2*pScale,pumpkin.height/2*pScale);
+            //Putting the "pumpkin" image onto the display screen and the coordinates where the "pumpkin"
+            //image is being displayed
+            
+            tint(255,pOpacity); //Defining how visible the "pumpkin" image is 
+            
+            pOpacity = pOpacity - 8; //Slowly decreasing the "pumpkin" opacity making
+            //it look as if it's fading away
+            
+            if (pOpacity <=0){
+                pScale = 1
+                background(random(0,255),random(0,255),random(0,255));
+                pOpacity=256
+            //This "if then statement" code only runs if the opacity of the "pumpkin" image reaches or is less than 0
+            //If the statement is true the "pumpkin" scale will go back to 0, background will change into another random color
+            //and the visibility will also be back to 256
+            //(255 is max visibility and 0 is invisible to the naked eye)
+            }
+            
+            pScale = pScale + 0.025; //The rate in which the "pumpkin" image is increasing by
+            
+        }
+        
+        function mouseDragged() {
+            //This code allows codes below to run when mouse is dragged
+            
+            imageMode(CENTER); //The mode of the "ghost" image
+            
+            image(ghost,mouseX,mouseY,ghost.width/2*gScale,ghost.height/2*gScale);
+            //Putting the "ghost" image onto the display screen and the coordinates where the "pumpkin"
+            //image is being displayed
+            
+            tint(255,gOpacity);//Defining how visible the "pumpkin" image is
+            
+            gOpacity = gOpacity - 3;//Slowly decreasing the "pumpkin" opacity making
+            //it look as if it's fading away
+            
+            if (gOpacity <= 0){
+                gScale = 1
+                background(random(0,255),random(0,255),random(0,255));
+                gOpacity = 256
+            //This "if then statement" code only runs if the opacity of the "ghost" image reaches or is less than 0
+            //If the statement is true the "ghost" scale will go back to 0, background will change into another random color
+            //and the visibility will also be back to 256
+            //(255 is max visibility and 0 is invisible to the naked eye)
+                
+            }
+            
+            gScale = gScale + 0.025; //The rate in which the "ghost" image is increasing by
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/mingleg7756/p5js/blob/gh-pages/interaction.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
